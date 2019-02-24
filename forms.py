@@ -7,23 +7,22 @@ from wtforms.validators import DataRequired, EqualTo, Length
 
 class RegisterForm(Form):
     name = TextField(
-        'Username', validators=[DataRequired(), Length(min=6, max=25)]
+        'ユーザー名', validators=[DataRequired(), Length(min=6, max=25)]
     )
     email = TextField(
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
     )
     password = PasswordField(
-        'Password', validators=[DataRequired(), Length(min=6, max=40)]
+        'パスワード', validators=[DataRequired(), Length(min=6, max=40)]
     )
     confirm = PasswordField(
-        'Repeat Password',
-        [DataRequired(),
-        EqualTo('password', message='Passwords must match')]
+        'パスワード確認', validators=[DataRequired(),
+        EqualTo('password', message='パスワードが一致しません')]
     )
 
 
 class LoginForm(Form):
-    name = TextField('Username', [DataRequired()])
+    name = TextField('ユーザー名', [DataRequired()])
     password = PasswordField('Password', [DataRequired()])
 
 

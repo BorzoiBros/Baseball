@@ -2,11 +2,12 @@
 # Imports
 #----------------------------------------------------------------------------#
 
-from flask import Flask, render_template, request
-# from flask.ext.sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, request, flash, url_for, session, redirect
+from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
 from forms import *
+from models import *
 import os
 
 #----------------------------------------------------------------------------#
@@ -15,10 +16,10 @@ import os
 
 app = Flask(__name__)
 app.config.from_object('config')
-#db = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
 # Automatically tear down SQLAlchemy.
-'''
+
 @app.teardown_request
 def shutdown_session(exception=None):
     db_session.remove()
@@ -35,7 +36,7 @@ def login_required(test):
             flash('You need to login first.')
             return redirect(url_for('login'))
     return wrap
-'''
+
 #----------------------------------------------------------------------------#
 # Controllers.
 #----------------------------------------------------------------------------#
@@ -51,16 +52,37 @@ def about():
     return render_template('pages/placeholder.about.html')
 
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    error = None
     form = LoginForm(request.form)
-    return render_template('forms/login.html', form=form)
+    return render_template('forms/login.html', form=form, error=error)
 
 
-@app.route('/register')
+@app.route('/register', methods=['GET', 'POST'])
 def register():
+    error = None
     form = RegisterForm(request.form)
-    return render_template('forms/register.html', form=form)
+    # flash(form.name.data)
+    # flash(form.email.data)
+    # flash(form.password.data)
+    # flash(form.confirm.data)
+    # flash(form.validate())
+    # flash(form.errors)
+    if request.method == 'POST' :
+        if form.validate_on_submit():
+            new_user = User(
+                form.name.data,
+                form.email.data,
+                form.password.data
+                )
+            db.session.add(new_user)
+            db.session.commit()
+            flash('Thanks for registering. Please login.')
+            return redirect(url_for('login'))
+        else:
+            flash('The input is invalid')
+    return render_template('forms/register.html', form=form, error=error)
 
 
 @app.route('/forgot')
