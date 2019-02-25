@@ -9,6 +9,7 @@ from logging import Formatter, FileHandler
 from forms import *
 from models import *
 import os
+from functools import wraps
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -33,7 +34,7 @@ def login_required(test):
         if 'logged_in' in session:
             return test(*args, **kwargs)
         else:
-            flash('You need to login first.')
+            flash('ログインしてください！')
             return redirect(url_for('login'))
     return wrap
 
@@ -56,6 +57,16 @@ def about():
 def login():
     error = None
     form = LoginForm(request.form)
+    if request.method == 'POST':
+        user = User.query.filter_by(name=request.form['name']).first()
+        if user is not None and user.password == request.form['password']:
+            session['logged_in'] = True
+            flash('ようこそ！')
+            return redirect(url_for('demo'))
+        else:
+            error = 'ユーザー名かパスワードが正しくありません'
+    else:
+        error = '両方とも入力してください'
     return render_template('forms/login.html', form=form, error=error)
 
 
@@ -72,10 +83,10 @@ def register():
                 )
             db.session.add(new_user)
             db.session.commit()
-            flash('Thanks for registering. Please login.')
+            flash('ユーザー登録ありがとうございます！ログインしてください！')
             return redirect(url_for('login'))
         else:
-            flash('The input is invalid')
+            flash('入力内容が間違っています')
     return render_template('forms/register.html', form=form, error=error)
 
 
@@ -83,6 +94,17 @@ def register():
 def forgot():
     form = ForgotForm(request.form)
     return render_template('forms/forgot.html', form=form)
+
+@app.route('/demo')
+@login_required
+def demo():
+    return render_template('pages/demo.html')
+
+@app.route('/logout')
+def logout():
+    session.pop('logged_in', None)
+    flash('ログアウトしました！')
+    return redirect(url_for('login'))
 
 # Error handlers.
 
