@@ -136,9 +136,10 @@ if not app.debug:
 #----------------------------------------------------------------------------#
 
 # Default port:
+'''
 if __name__ == '__main__':
     app.run()
-
+'''
 # Or specify port manually:
 '''
 if __name__ == '__main__':
