@@ -7,7 +7,6 @@ from flask.ext.sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
 from forms import *
-from models import *
 import os
 from functools import wraps
 
@@ -19,11 +18,14 @@ app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
 
+from models import User
 # Automatically tear down SQLAlchemy.
-
+'''
 @app.teardown_request
 def shutdown_session(exception=None):
     db_session.remove()
+
+'''
 '''
 
 # Login required decorator.
