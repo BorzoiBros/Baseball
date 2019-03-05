@@ -1,0 +1,33 @@
+{% extends 'layouts/form.html' %}
+{% block title %}Add Team{% endblock %}
+{% block content %}
+<h1>チーム登録</h1>
+<br>
+<a href="{{ url_for('logout') }}">ログアウト</a>
+  <form method="post" class="form">
+  	{{ form.csrf_token }}
+    <h3 class="form-heading">チーム登録 <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+    {{ form.team_name(class_ = 'form-control first-input', placeholder = form.team_name.label.text, required = true, autofocus = true) }}
+    {{ form.league(class_ = 'form-control', placeholder = form.league.label.text, required = true) }}
+    {{ form.division(class_ = 'form-control', placeholder = form.division.label.text, required = true) }}
+    <input type="submit" value="登録" class="btn btn-primary btn-lg btn-block">
+  </form>
+<h2>チーム一覧</h2>
+<table>
+  <thead>
+    <tr>
+      <th width="200px"><strong>チーム名</strong></th>
+      <th width="200px"><strong>リーグ</strong></th>
+      <th width="200px"><strong>ディビジョン</strong></th>
+    </tr>
+  </thead>
+  {% for team in teams %}
+    <tr>
+      <th width="200px">{{ team.team_name }}</th>
+      <th width="200px">{{ team.league }}</th>
+      <th width="200px">{{ team.division }}</th>
+    </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}

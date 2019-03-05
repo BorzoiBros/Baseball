@@ -18,7 +18,7 @@ app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
 
-from models import User
+from models import User, Team
 # Automatically tear down SQLAlchemy.
 '''
 @app.teardown_request
@@ -130,6 +130,37 @@ if not app.debug:
     file_handler.setLevel(logging.INFO)
     app.logger.addHandler(file_handler)
     app.logger.info('errors')
+
+@app.route('/teams', methods=['GET', 'POST'])
+@login_required
+def teams():
+    teams = db.session.query(Team)
+    return render_template(
+        'forms/teams.html',
+        form=AddTeamForm(request.form),
+        teams=teams
+        )
+
+@app.route('/add_team', methods=['GET', 'POST'])
+@login_required
+def add_team():
+    error = None
+    form = AddTeamForm(request.form)
+    if request.method == 'POST' :
+        if form.validate_on_submit():
+            new_team = Team(
+                form.team_name.data,
+                form.league.data,
+                form.division.data
+                )
+            db.session.add(new_team)
+            db.session.commit()
+            flash('チームが登録されました！')
+            return redirect(url_for('teams'))
+        else:
+            flash('入力内容が間違っています')
+    return render_template('forms/teams.html', form=form, error=error)
+
 
 #----------------------------------------------------------------------------#
 # Launch.

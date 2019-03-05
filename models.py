@@ -30,6 +30,22 @@ class User(Base):
     def __repr__(self):
         return '<User 0>'.format(self.name)
 
+class Team(Base):
+    __tablename__ = 'Teams'
+
+    id = db.Column(db.Integer, primary_key=True)
+    team_name = db.Column(db.String(120), unique=True)
+    league = db.Column(db.String(120), unique=True)
+    devision = db.Column(db.String(30))
+
+    def __init__(self, team_name=None, league=None, division=None):
+        self.team_name = team_name
+        self.league = league
+        self.division = division
+
+    def __repr__(self):
+        return '<User 0>'.format(self.name)
+
 
 # Create tables.
 Base.metadata.create_all(bind=engine)

@@ -17,7 +17,7 @@ class AllTests(unittest.TestCase):
 		app.config['WTF_CSRF_ENABLED'] = False
 		app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
 		os.path.join(basedir, TEST_DB)
-		self.app = app.text_client()
+		self.app = app.test_client()
 		db.create_all()
 
 	# executed after each test
