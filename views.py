@@ -145,6 +145,7 @@ def teams():
 @login_required
 def add_team():
     error = None
+    teams = db.session.query(Team)
     form = AddTeamForm(request.form)
     if request.method == 'POST' :
         if form.validate_on_submit():
@@ -159,7 +160,7 @@ def add_team():
             return redirect(url_for('teams'))
         else:
             flash('入力内容が間違っています')
-    return render_template('forms/teams.html', form=form, error=error)
+    return render_template('forms/teams.html', form=form, teams=teams, error=error)
 
 
 #----------------------------------------------------------------------------#
