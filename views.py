@@ -145,7 +145,6 @@ def teams():
 @login_required
 def add_team():
     error = None
-    teams = db.session.query(Team)
     form = AddTeamForm(request.form)
     if request.method == 'POST' :
         if form.validate_on_submit():
@@ -158,10 +157,15 @@ def add_team():
             db.session.commit()
             flash('チームが登録されました！')
             return redirect(url_for('teams'))
-        else:
-            flash('入力内容が間違っています')
-    return render_template('forms/teams.html', form=form, teams=teams, error=error)
 
+@app.route('/delete/<int:team_id>')
+@login_required
+def delete_team(team_id):
+    new_id = team_id
+    db.session.query(Team).filter_by(id=new_id).delete()
+    db.session.commit()
+    flash('チームは削除されました')
+    return redirect(url_for('teams'))
 
 #----------------------------------------------------------------------------#
 # Launch.

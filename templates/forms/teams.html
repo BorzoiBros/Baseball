@@ -4,9 +4,10 @@
 <h1>チーム登録</h1>
 <br>
 <a href="{{ url_for('logout') }}">ログアウト</a>
+<p><a href="{{ url_for ('demo') }}" >デモページに戻る</a></p>
   <form method="post" class="form">
   	{{ form.csrf_token }}
-    <h3 class="form-heading">チーム登録 <a href="{{ url_for('home') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+    <h3 class="form-heading">チーム登録 <a href="{{ url_for('add_team') }}"</a></h3>
     {{ form.team_name(class_ = 'form-control first-input', placeholder = form.team_name.label.text, required = true, autofocus = true) }}
     {{ form.league(class_ = 'form-control', placeholder = form.league.label.text, required = true) }}
     {{ form.division(class_ = 'form-control', placeholder = form.division.label.text, required = true) }}
@@ -19,13 +20,16 @@
       <th width="200px"><strong>チーム名</strong></th>
       <th width="200px"><strong>リーグ</strong></th>
       <th width="200px"><strong>ディビジョン</strong></th>
+      <th width="200px"><strong>アクション</strong></th>
     </tr>
   </thead>
   {% for team in teams %}
     <tr>
-      <th width="200px">{{ team.team_name }}</th>
-      <th width="200px">{{ team.league }}</th>
-      <th width="200px">{{ team.division }}</th>
+      <td width="200px">{{ team.team_name }}</th>
+      <td width="200px">{{ team.league }}</th>
+      <td width="200px">{{ team.division }}</th>
+      <td width="200px">
+        <a href="{{ url_for('delete_team', team_id = team.id) }}">Delete</a>
     </tr>
   {% endfor %}
 </table>
