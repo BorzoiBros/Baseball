@@ -38,8 +38,6 @@ class AllTests(unittest.TestCase):
 	# check if the landing page returns expected contents
 	def test_home_page_contents(self):
 		response = self.app.get('/')
-		print(response.data)
-		expected_string = '野球'.encode('utf-8')
 		self.assertEqual(response.status_code, 200)
 		self.assertIn(b'Borzoi Bros', response.data)
 
@@ -52,8 +50,24 @@ class AllTests(unittest.TestCase):
 
 	# helper method to see if a user can login
 	def login(self, name, password):
-		return self.app.post('/login', data=dict(
-			name=name, password=password, follow_redirects=True))
+		return self.app.post(
+			'/login',
+			data=dict(
+				name=name,
+				password=password,
+				follow_redirects=True)
+			)
+
+	# helper method to add team
+	def add_team(self, team_name, league, division):
+		return self.app.post(
+			'/add_team',
+			data=dict(
+				team_name=team_name,
+				league=league,
+				division=division,
+				follow_redirects=True)
+			)
 
 	# Check if user cannot login unless registered
 	def test_users_cannot_login_unless_registered(self):
@@ -65,6 +79,27 @@ class AllTests(unittest.TestCase):
 		self.register('Borzoi Bros', 'borzoibros3@gmail.com', 'borzoibros', 'borzoibros')
 		response = self.login('Borzoi Bros', 'borzoibros')
 		self.assertIn(b'demo', response.data)
+
+	# Test that user can add team
+	def test_users_can_view_teams(self):
+		self.register('Borzoi Bros', 'borzoibros3@gmail.com', 'borzoibros', 'borzoibros')
+		self.login('Borzoi Bros', 'borzoibros')
+		response = self.app.get('/teams')
+		self.assertIn(b'Teams', response.data)
+
+	def test_users_can_add_teams(self):
+		self.register('Borzoi Bros', 'borzoibros3@gmail.com', 'borzoibros', 'borzoibros')
+		self.login('Borzoi Bros', 'borzoibros')
+		self.add_team('Test Team', 'Test League', 'East')
+		response = self.app.get('/teams')
+		self.assertIn(b'Test Team', response.data)
+
+	def test_users_can_delete_team(self):
+		self.register('Borzoi Bros', 'borzoibros3@gmail.com', 'borzoibros', 'borzoibros')
+		self.login('Borzoi Bros', 'borzoibros')
+		self.add_team('Test Team', 'Test League', 'East')
+		response = self.app.get('/delete/1', follow_redirects=True)
+		self.assertIn(b'Team is deleted successfully', response.data)
 
 if __name__ == '__main__':
 	unittest.main()

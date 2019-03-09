@@ -164,7 +164,7 @@ def delete_team(team_id):
     new_id = team_id
     db.session.query(Team).filter_by(id=new_id).delete()
     db.session.commit()
-    flash('チームは削除されました')
+    flash('チームは削除されました.。Team is deleted successfully')
     return redirect(url_for('teams'))
 
 #----------------------------------------------------------------------------#
