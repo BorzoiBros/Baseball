@@ -4,3 +4,5 @@ env
 venv
 *.sublime-project
 *.sublime-workspace
+.coverage
+htmlconv
