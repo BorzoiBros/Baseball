@@ -14,7 +14,7 @@ Base.query = db_session.query_property()
 # Set your classes here.
 
 
-class User(Base):
+class User(db.Model):
     __tablename__ = 'Users'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -30,7 +30,7 @@ class User(Base):
     def __repr__(self):
         return '<User 0>'.format(self.name)
 
-class Team(Base):
+class Team(db.Model):
     __tablename__ = 'Teams'
 
     id = db.Column(db.Integer, primary_key=True)

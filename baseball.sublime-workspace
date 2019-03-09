@@ -3,31 +3,154 @@
 	{
 		"selected_items":
 		[
+			[
+				"TEST",
+				"TEST_DB"
+			],
+			[
+				"login",
+				"login_required"
+			],
+			[
+				"dis",
+				"distance_from_origins"
+			],
+			[
+				"distance_",
+				"distance_from_origins"
+			],
+			[
+				"distan",
+				"distance_from_origins"
+			],
+			[
+				"K",
+				"kClosest"
+			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "app.py",
+			"contents": "\nHey! I'm going to Sweden and travel around Nordic/Baltic countries for April 28 - May 7th with my family.\nIf you want to join us in any part of the trip, please let me know!\n\nIt would be great to catch up with you!\nFollowing is the travel itenerarry.\n\n[4/28 (Sun)]\n6:15 Arrive at Arlanda airport - Tour around Stockholm.\n17:30 Cruise (Tallink & Silja Line) to Tallin (Estonia)\n\n[4/29 (Mon)]\n10:00 Arrive at Tallin - Tour around Tallin and stay in hotel\n\n[4/30 (Tue)]\nTake ferry to Helsinki, Finland (2 hours 15 minutes trip)\nStay in Helsinki for the night\n\n[5/1 (Wed)]\nStay in Helsinki for another day\n\n[5/2 (Thu)]\n17:00 Cruise (Tallink & Silja Line) to Stockholm (Sweden)\n\n[5/3 (Fri) - 5/5 (Sun)]\n9:45 Arrive at Stockholm\n17:13 Take a train to Orebro. \n19:03 Arrive at Orebro C\nStay Orebro/Karlskoga area until Sunday.\n\n[5/6 (Mon)]\n8:57 Take a train to Stockholm in the morning\n10:46 Arrive at Stockholm\n\nTour around Stockholm and stay in hotel.\n\n[5/7 (Tue)]\n12:30 Leave Arlanda airport",
 			"settings":
 			{
-				"buffer_size": 2768,
+				"buffer_size": 988,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "README.md",
+			"file": "/Users/kentasato718/Projects/LeetCode/shortest-distance-to-a-character.py",
 			"settings":
 			{
-				"buffer_size": 8967,
+				"buffer_size": 939,
 				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test.py",
+			"settings":
+			{
+				"buffer_size": 777,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/kentasato718/Projects/LeetCode/.hamming-distance.py.un~",
+			"settings":
+			{
+				"buffer_size": 54992,
+				"encoding": "Hexadecimal",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "forms.py",
+			"settings":
+			{
+				"buffer_size": 1200,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "templates/forms/teams.html",
+			"settings":
+			{
+				"buffer_size": 1388,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "{% extends 'layouts/main.html' %}\n{% block title %}デモ{% endblock %}\n{% block content %}\n\n<div class=\"page-header\">\n\t<h1>ログイン後デモサイト</h1>\n</div>\n<p class=\"lead\">おめでとうございます！ログインできました！！</p>\n<p>Yay</p>\n<p><a href=\"{{ url_for ('team') }}\" >チーム追加</a></p>\n<p><a href=\"{{ url_for('logout') }}\" >ログアウト</a></p>\n{% endblock %}",
+			"file": "templates/pages/demo.html",
+			"file_size": 406,
+			"file_write_time": 131962961352104498,
+			"settings":
+			{
+				"buffer_size": 314,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app.py",
+			"settings":
+			{
+				"buffer_size": 166,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "models.py",
+			"settings":
+			{
+				"buffer_size": 1538,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views.py",
+			"settings":
+			{
+				"buffer_size": 5005,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "class Solution(object):\n    def isToeplitzMatrix(self, matrix):\n        \"\"\"\n        :type matrix: List[List[int]]\n        :rtype: bool\n        \"\"\"\n        ",
+			"file": "/Users/kentasato718/Projects/LeetCode/toeplitz-matrix.py",
+			"file_size": 0,
+			"file_write_time": 131964371018349782,
+			"settings":
+			{
+				"buffer_size": 155,
 				"line_ending": "Unix"
 			}
 		}
 	],
-	"build_system": "",
+	"build_system": "Packages/Python/Python.sublime-build",
 	"build_system_choices":
 	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
 	],
 	"build_varint": "",
 	"command_palette":
@@ -36,14 +159,32 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				":0 - BOF"
+			],
+			[
+				":q",
+				"Set Syntax: SQL"
+			]
 		],
 		"width": 0.0
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 136.0,
 		"history":
 		[
+			"print(1)",
+			"pwd",
+			"Package Control.sublime-package",
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"Package Control.sublime-package",
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
 		]
 	},
 	"distraction_free":
@@ -57,13 +198,40 @@
 	},
 	"expanded_folders":
 	[
+		"/Users/kentasato718/Projects/LeetCode"
 	],
 	"file_history":
 	[
+		"/Users/kentasato718/Projects/LeetCode/valid_parensis.py",
+		"/Users/kentasato718/Library/Application Support/Sublime Text 3/Packages/User/Side Bar.sublime-settings",
+		"/Users/kentasato718/Projects/LeetCode/number-complement.py",
+		"/Users/kentasato718/Projects/LeetCode/reverse-string.py",
+		"/Users/kentasato718/Projects/LeetCode/increasing-order-search-tree.py",
+		"/Users/kentasato718/Projects/Baseball/forms.py",
+		"/Users/kentasato718/Projects/Baseball/templates/forms/register.html",
+		"/Users/kentasato718/Projects/LeetCode/n-ary-tree-postorder-traversal.py",
+		"/Users/kentasato718/Projects/LeetCode/n-ary-tree-preorder-traversal.py",
+		"/Users/kentasato718/Projects/LeetCode/middle-of-linked-list.py",
+		"/Users/kentasato718/Projects/LeetCode/smallest-range-i.py",
+		"/Users/kentasato718/Projects/LeetCode/maximum-depth-of-n-ary-tree.py",
+		"/Users/kentasato718/Projects/Baseball/models.py",
+		"/Users/kentasato718/Projects/Baseball/run.py",
+		"/Users/kentasato718/Projects/LeetCode/projection-area-of-3d-shapes.py",
+		"/Users/kentasato718/Projects/Baseball/Procfile",
+		"/Users/kentasato718/Projects/Baseball/views.py",
+		"/Users/kentasato718/Projects/Baseball/templates/forms/forgot.html",
+		"/Users/kentasato718/Projects/LeetCode/k-closest-points-to-origin.py",
+		"/Users/kentasato718/Projects/Baseball/config.py",
+		"/Users/kentasato718/Projects/Baseball/templates/forms/login.html",
+		"/Users/kentasato718/Projects/Baseball/templates/pages/demo.html",
+		"/Users/kentasato718/Projects/Baseball/app.py",
+		"/Users/kentasato718/Projects/Baseball/templates/pages/placeholder.about.html",
+		"/Users/kentasato718/Projects/Baseball/templates/pages/placeholder.home.html",
+		"/Users/kentasato718/Projects/Baseball/templates/layouts/main.html"
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 24.0
 	},
 	"find_in_files":
 	{
@@ -77,6 +245,13 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"*\n",
+			"password",
+			"User",
+			"#        ",
+			"invalid",
+			"testing",
+			"Test"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -94,24 +269,52 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2768,
+						"buffer_size": 988,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								905,
+								905
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/Users/kentasato718/Projects/LeetCode/shortest-distance-to-a-character.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 939,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								939,
+								939
 							]
 						],
 						"settings":
@@ -121,19 +324,48 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 9.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "test.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 777,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								456,
+								456
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "README.md",
+					"buffer": 3,
+					"file": "/Users/kentasato718/Projects/LeetCode/.hamming-distance.py.un~",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 8967,
+						"buffer_size": 54992,
 						"regions":
 						{
 						},
@@ -146,9 +378,7 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Markdown/Markdown.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -156,13 +386,225 @@
 					},
 					"stack_index": 0,
 					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "forms.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1200,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1200,
+								1200
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 138.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "templates/forms/teams.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1388,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								342,
+								342
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "templates/pages/demo.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 314,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								222,
+								222
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 166,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								40,
+								40
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "models.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1538,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1480,
+								1001
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 9,
+					"file": "views.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5005,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								414,
+								414
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SQL/SQL.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "/Users/kentasato718/Projects/LeetCode/toeplitz-matrix.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 155,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								155,
+								155
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
 				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 24.0
 	},
 	"input":
 	{
@@ -177,11 +619,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.45212951187,
 			1.0
 		],
 		"rows":
@@ -191,15 +640,19 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 195.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
 	},
-	"pinned_build_system": "",
+	"pinned_build_system": "Packages/Python/Python.sublime-build",
 	"project": "baseball.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 44.0
 	},
 	"save_all_on_build": true,
 	"select_file":
