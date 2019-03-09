@@ -5,4 +5,4 @@ venv
 *.sublime-project
 *.sublime-workspace
 .coverage
-htmlconv
+htmlcov
