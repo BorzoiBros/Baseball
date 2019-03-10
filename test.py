@@ -95,11 +95,29 @@ class AllTests(unittest.TestCase):
 		self.assertIn(b'Test Team', response.data)
 
 	def test_users_can_delete_team(self):
-		self.register('Borzoi Bros', 'borzoibros3@gmail.com', 'borzoibros', 'borzoibros')
+		self.register('Borzoi Bros',
+			'borzoibros3@gmail.com',
+			'borzoibros',
+			'borzoibros'
+			)
 		self.login('Borzoi Bros', 'borzoibros')
 		self.add_team('Test Team', 'Test League', 'East')
 		response = self.app.get('/delete/1', follow_redirects=True)
 		self.assertIn(b'Team is deleted successfully', response.data)
+
+	def test_404_error(self):
+		response = self.app.get('/this-route-does-not-exist/')
+		self.assertEquals(response.status_code, 404)
+
+	def test_500_error(self):
+		bad_user = User(
+			name='Shiba Dog',
+			email='shibadog@gmail.com',
+			password='shibadog'
+			)
+		db.session.add(bad_user)
+		db.session.commit()
+		response = self.login('Shiba Dog', 'shibadog')
 
 if __name__ == '__main__':
 	unittest.main()
