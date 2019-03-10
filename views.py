@@ -67,8 +67,10 @@ def login():
             return redirect(url_for('demo'))
         else:
             error = 'ユーザー名かパスワードが正しくありません'
+            flash(error)
     else:
         error = '両方とも入力してください'
+        flash(error)
     return render_template('forms/login.html', form=form, error=error)
 
 
