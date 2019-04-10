@@ -7,22 +7,22 @@ from wtforms.validators import DataRequired, EqualTo, Length
 
 class RegisterForm(Form):
     name = TextField(
-        'ユーザー名', validators=[DataRequired(), Length(min=6, max=25)]
+        'User Name', validators=[DataRequired(), Length(min=6, max=25)]
     )
     email = TextField(
         'Email', validators=[DataRequired(), Length(min=6, max=40)]
     )
     password = PasswordField(
-        'パスワード', validators=[DataRequired(), Length(min=6, max=40)]
+        'Password', validators=[DataRequired(), Length(min=6, max=40)]
     )
     confirm = PasswordField(
-        'パスワード確認', validators=[DataRequired(),
-        EqualTo('password', message='パスワードが一致しません')]
+        'Password Confirmation', validators=[DataRequired(),
+        EqualTo('password', message='Password does not match')]
     )
 
 
 class LoginForm(Form):
-    name = TextField('ユーザー名', [DataRequired()])
+    name = TextField('User Name', [DataRequired()])
     password = PasswordField('Password', [DataRequired()])
 
 
@@ -33,11 +33,11 @@ class ForgotForm(Form):
 
 class AddTeamForm(Form):
     team_name = TextField(
-        'チーム名', validators=[DataRequired(), Length(min=6, max=25)]
+        'Team Name', validators=[DataRequired(), Length(min=6, max=25)]
     )
     league = TextField(
-        'リーグ', validators=[DataRequired(), Length(min=6, max=40)]
+        'League', validators=[DataRequired(), Length(min=6, max=40)]
     )
     division = TextField(
-        'ディビジョン (部)', validators=[DataRequired(), Length(min=1, max=40)]
+        'Devision', validators=[DataRequired(), Length(min=1, max=40)]
     )

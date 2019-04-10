@@ -1,26 +1,26 @@
 {% extends 'layouts/form.html' %}
 {% block title %}Teams{% endblock %}
 {% block content %}
-<h1>チーム登録</h1>
+<h1>Team Registration</h1>
 <br>
-<a href="{{ url_for('logout') }}">ログアウト</a>
-<p><a href="{{ url_for ('demo') }}" >デモページに戻る</a></p>
+<a href="{{ url_for('logout') }}">Logout</a>
+<p><a href="{{ url_for ('demo') }}" >Return to demo page</a></p>
   <form method="post" class="form">
   	{{ form.csrf_token }}
-    <h3 class="form-heading">チーム登録 <a href="{{ url_for('add_team') }}"</a></h3>
+    <h3 class="form-heading">Team Registration<a href="{{ url_for('add_team') }}"></h3>
     {{ form.team_name(class_ = 'form-control first-input', placeholder = form.team_name.label.text, required = true, autofocus = true) }}
     {{ form.league(class_ = 'form-control', placeholder = form.league.label.text, required = true) }}
     {{ form.division(class_ = 'form-control', placeholder = form.division.label.text, required = true) }}
-    <input type="submit" value="登録" class="btn btn-primary btn-lg btn-block">
+    <input type="submit" value="Register" class="btn btn-primary btn-lg btn-block">
   </form>
-<h2>チーム一覧</h2>
+<h2>Teams</h2>
 <table>
   <thead>
     <tr>
-      <th width="200px"><strong>チーム名</strong></th>
-      <th width="200px"><strong>リーグ</strong></th>
-      <th width="200px"><strong>ディビジョン</strong></th>
-      <th width="200px"><strong>アクション</strong></th>
+      <th width="200px"><strong>Team Name</strong></th>
+      <th width="200px"><strong>League</strong></th>
+      <th width="200px"><strong>Devision</strong></th>
+      <th width="200px"><strong>Action</strong></th>
     </tr>
   </thead>
   {% for team in teams %}

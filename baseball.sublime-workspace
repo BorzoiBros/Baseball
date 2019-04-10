@@ -32,102 +32,76 @@
 	"buffers":
 	[
 		{
-			"contents": "\nHey! I'm going to Sweden and travel around Nordic/Baltic countries for April 28 - May 7th with my family.\nIf you want to join us in any part of the trip, please let me know!\n\nIt would be great to catch up with you!\nFollowing is the travel itenerarry.\n\n[4/28 (Sun)]\n6:15 Arrive at Arlanda airport - Tour around Stockholm.\n17:30 Cruise (Tallink & Silja Line) to Tallin (Estonia)\n\n[4/29 (Mon)]\n10:00 Arrive at Tallin - Tour around Tallin and stay in hotel\n\n[4/30 (Tue)]\nTake ferry to Helsinki, Finland (2 hours 15 minutes trip)\nStay in Helsinki for the night\n\n[5/1 (Wed)]\nStay in Helsinki for another day\n\n[5/2 (Thu)]\n17:00 Cruise (Tallink & Silja Line) to Stockholm (Sweden)\n\n[5/3 (Fri) - 5/5 (Sun)]\n9:45 Arrive at Stockholm\n17:13 Take a train to Orebro. \n19:03 Arrive at Orebro C\nStay Orebro/Karlskoga area until Sunday.\n\n[5/6 (Mon)]\n8:57 Take a train to Stockholm in the morning\n10:46 Arrive at Stockholm\n\nTour around Stockholm and stay in hotel.\n\n[5/7 (Tue)]\n12:30 Leave Arlanda airport",
+			"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/config.py",
 			"settings":
 			{
-				"buffer_size": 988,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/kentasato718/Projects/LeetCode/shortest-distance-to-a-character.py",
-			"settings":
-			{
-				"buffer_size": 939,
+				"buffer_size": 413,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "test.py",
+			"file": "/Users/kentasato718/Projects/Tools/Deploy/config/bom.json",
 			"settings":
 			{
-				"buffer_size": 777,
+				"buffer_size": 2286,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/Users/kentasato718/Projects/LeetCode/.hamming-distance.py.un~",
+			"contents": "from fabric import Connection, task\nfrom invoke import Responder\nfrom fabfile.common import Deploy\n\ncomponent = 'inode_alarm'\n\nclass iNodeAlarmDeploy(Deploy):\n\n    def __init__(self,component=component):\n        Deploy.__init__(self,component)\n\n    def upgrade(self):\n        conn = self.conn\n        # If it's already installed, just warn the user\n        if conn.run('test -e /mmcc/inode/apps/alarm_ha', warn=True, echo=True).ok:\n            print(\"The {} is already installed!\".format(FILE[:-4]))\n\n        # Else install this version\n        else:\n            conn.run('unzip ' + remote_directory + package_file + ' -d ' + '/mmcc/inode/apps/', echo=True)\n\n            # Copy config file\n            # conn.run('cp ' + REMOTE_PATH + ' ' + ISWITCH_PATH, echo=True)\n            conn.run('chown -R mmccadmin:mmccadmin ' + ISWITCH_PATH, echo=True)\n            conn.run('service octon-inode stop', echo=True, pty=True)\n            conn.run('service octon-inode start && sleep 10', echo=True, pty=True)\n            print('iNodeAlarm Upgraded!')\n\n\n@task\ndef inode_alarm_upload(c):\n    deploy = iNodeAlarmDeploy()\n    deploy.upload()\n\n@task\ndef inode_alarm_deploy(c):\n    deploy = iNodeAlarmDeploy()\n    deploy.deploy()\n\n",
+			"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/inodealarm_ha.py",
+			"file_size": 1130,
+			"file_write_time": 131984671990470377,
 			"settings":
 			{
-				"buffer_size": 54992,
-				"encoding": "Hexadecimal",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "forms.py",
-			"settings":
-			{
-				"buffer_size": 1200,
+				"buffer_size": 1215,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "templates/forms/teams.html",
+			"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/ipbx.py",
 			"settings":
 			{
-				"buffer_size": 1388,
+				"buffer_size": 1222,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "{% extends 'layouts/main.html' %}\n{% block title %}デモ{% endblock %}\n{% block content %}\n\n<div class=\"page-header\">\n\t<h1>ログイン後デモサイト</h1>\n</div>\n<p class=\"lead\">おめでとうございます！ログインできました！！</p>\n<p>Yay</p>\n<p><a href=\"{{ url_for ('team') }}\" >チーム追加</a></p>\n<p><a href=\"{{ url_for('logout') }}\" >ログアウト</a></p>\n{% endblock %}",
-			"file": "templates/pages/demo.html",
-			"file_size": 406,
-			"file_write_time": 131962961352104498,
+			"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/iswitch.py",
 			"settings":
 			{
-				"buffer_size": 314,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app.py",
-			"settings":
-			{
-				"buffer_size": 166,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "models.py",
-			"settings":
-			{
-				"buffer_size": 1538,
+				"buffer_size": 1264,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "views.py",
+			"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/common.py",
 			"settings":
 			{
-				"buffer_size": 5005,
+				"buffer_size": 1887,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "class Solution(object):\n    def isToeplitzMatrix(self, matrix):\n        \"\"\"\n        :type matrix: List[List[int]]\n        :rtype: bool\n        \"\"\"\n        ",
-			"file": "/Users/kentasato718/Projects/LeetCode/toeplitz-matrix.py",
-			"file_size": 0,
-			"file_write_time": 131964371018349782,
+			"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/icare.py",
 			"settings":
 			{
-				"buffer_size": 155,
+				"buffer_size": 876,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/ilogger_ratings.py",
+			"settings":
+			{
+				"buffer_size": 1108,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		}
@@ -159,6 +133,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"PackageRe",
+				"PackageResourceViewer: Extract Package"
+			],
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			],
 			[
 				"Package Control: ",
 				"Package Control: Install Package"
@@ -198,40 +184,83 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/kentasato718/Projects/LeetCode"
+		"/Users/kentasato718/Projects/Baseball",
+		"/Users/kentasato718/Projects/InterviewCake",
+		"/Users/kentasato718/Projects/Tools",
+		"/Users/kentasato718/Projects/Tools/Deploy",
+		"/Users/kentasato718/Projects/Tools/Deploy/config",
+		"/Users/kentasato718/Projects/Tools/Deploy/fabfile",
+		"/Users/kentasato718/Projects/Career"
 	],
 	"file_history":
 	[
+		"/Users/kentasato718/Projects/Tools/Deploy/fabfile/ilogger_ratings.py",
+		"/Users/kentasato718/Projects/Tools/Deploy/fabfile/icare.py",
+		"/Users/kentasato718/Projects/Tools/Deploy/config/bom.json",
+		"/Users/kentasato718/Projects/Tools/Deploy/fabfile/__init__.py",
+		"/Users/kentasato718/Projects/Tools/Deploy/fabfile/common.py",
+		"/Users/kentasato718/Projects/Tools/Deploy/fabfile/iswitch.py",
+		"/Users/kentasato718/Projects/Baseball/note.md",
+		"/Users/kentasato718/Projects/LeetCode/verifying-an-alien-dictionary.py",
+		"/Users/kentasato718/Downloads/PassFolder.csv",
+		"/Users/kentasato718/Projects/Career/job-description.md",
+		"/Users/kentasato718/Projects/Blog/books-2019.md",
+		"/Users/kentasato718/Projects/Baseball/views.py",
+		"/Users/kentasato718/Projects/Tools/mmcc-deploy.py",
+		"/Users/kentasato718/Projects/Tools/fabfile/ssh_config",
+		"/Users/kentasato718/Projects/Tools/fabfile/.fabric.yaml",
+		"/Users/kentasato718/Projects/Tools/fabfile/fabfile/__init__.py",
+		"/Users/kentasato718/Projects/Tools/fabfile.py",
+		"/Users/kentasato718/Projects/Tools/fabfile/tasks/tasks.py",
+		"/Users/kentasato718/Projects/Tools/fabfile/fabfile.py",
+		"/Users/kentasato718/Projects/Baseball/fabric.md",
+		"/Users/kentasato718/Projects/Baseball/README.md",
+		"/Users/kentasato718/Projects/InterviewCake/memo.txt",
+		"/Users/kentasato718/Projects/Blog/baseball-reference.md",
+		"/Users/kentasato718/Projects/Blog/jmeter-functional-testing.md",
+		"/Users/kentasato718/Projects/InterviewCake/find_duplicate_files.py",
+		"/Users/kentasato718/Projects/Tools/fabfile/package01.bin",
+		"/Users/kentasato718/Projects/Tools/sftp_multiple_servers.py",
+		"/Users/kentasato718/Projects/LeetCode/letter-case-permutation.py",
+		"/Users/kentasato718/Projects/InterviewCake/word_cloud.py",
+		"/Users/kentasato718/Projects/LeetCode/reverse-only-letters.py",
+		"/Users/kentasato718/Projects/Baseball/jmeter-functional-testing.md",
+		"/Users/kentasato718/Projects/Baseball/templates/errors/404.html",
+		"/Users/kentasato718/Library/Application Support/Sublime Text 3/Packages/User/OmniMarkupPreviewer.sublime-settings",
+		"/Users/kentasato718/Projects/Baseball/models.py",
+		"/Users/kentasato718/Projects/Baseball/app.py",
+		"/Users/kentasato718/Projects/Baseball/templates/forms/teams.html",
+		"/Users/kentasato718/Projects/Baseball/test.py",
+		"/Users/kentasato718/Projects/Baseball/templates/pages/demo.html",
+		"/Users/kentasato718/Projects/LeetCode/island-perimeter.py",
+		"/Users/kentasato718/Projects/LeetCode/toeplitz-matrix.py",
+		"/Users/kentasato718/Projects/LeetCode/shortest-distance-to-a-character.py",
+		"/Users/kentasato718/Projects/Baseball/forms.py",
 		"/Users/kentasato718/Projects/LeetCode/valid_parensis.py",
 		"/Users/kentasato718/Library/Application Support/Sublime Text 3/Packages/User/Side Bar.sublime-settings",
 		"/Users/kentasato718/Projects/LeetCode/number-complement.py",
 		"/Users/kentasato718/Projects/LeetCode/reverse-string.py",
 		"/Users/kentasato718/Projects/LeetCode/increasing-order-search-tree.py",
-		"/Users/kentasato718/Projects/Baseball/forms.py",
 		"/Users/kentasato718/Projects/Baseball/templates/forms/register.html",
 		"/Users/kentasato718/Projects/LeetCode/n-ary-tree-postorder-traversal.py",
 		"/Users/kentasato718/Projects/LeetCode/n-ary-tree-preorder-traversal.py",
 		"/Users/kentasato718/Projects/LeetCode/middle-of-linked-list.py",
 		"/Users/kentasato718/Projects/LeetCode/smallest-range-i.py",
 		"/Users/kentasato718/Projects/LeetCode/maximum-depth-of-n-ary-tree.py",
-		"/Users/kentasato718/Projects/Baseball/models.py",
 		"/Users/kentasato718/Projects/Baseball/run.py",
 		"/Users/kentasato718/Projects/LeetCode/projection-area-of-3d-shapes.py",
 		"/Users/kentasato718/Projects/Baseball/Procfile",
-		"/Users/kentasato718/Projects/Baseball/views.py",
 		"/Users/kentasato718/Projects/Baseball/templates/forms/forgot.html",
 		"/Users/kentasato718/Projects/LeetCode/k-closest-points-to-origin.py",
 		"/Users/kentasato718/Projects/Baseball/config.py",
 		"/Users/kentasato718/Projects/Baseball/templates/forms/login.html",
-		"/Users/kentasato718/Projects/Baseball/templates/pages/demo.html",
-		"/Users/kentasato718/Projects/Baseball/app.py",
 		"/Users/kentasato718/Projects/Baseball/templates/pages/placeholder.about.html",
 		"/Users/kentasato718/Projects/Baseball/templates/pages/placeholder.home.html",
 		"/Users/kentasato718/Projects/Baseball/templates/layouts/main.html"
 	],
 	"find":
 	{
-		"height": 24.0
+		"height": 37.0
 	},
 	"find_in_files":
 	{
@@ -245,6 +274,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"local_directory",
+			"ilogger_rating_deploy",
+			"responder",
+			"parent",
+			"credentials",
+			"deploy",
+			"respon",
+			"index",
+			"demo",
 			"*\n",
 			"password",
 			"User",
@@ -269,103 +307,215 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
+					"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/config.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 988,
+						"buffer_size": 413,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								905,
-								905
+								412,
+								412
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "python"
+							},
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										607,
+										608
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/square_bracket.png",
+										"region.bluish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										592,
+										593
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 10,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/Users/kentasato718/Projects/LeetCode/shortest-distance-to-a-character.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 939,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								939,
-								939
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "test.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 777,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								456,
-								456
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/kentasato718/Projects/LeetCode/.hamming-distance.py.un~",
+					"file": "/Users/kentasato718/Projects/Tools/Deploy/config/bom.json",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 54992,
+						"buffer_size": 2286,
 						"regions":
 						{
 						},
@@ -378,66 +528,1016 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"SL.292.region_keys":
+							[
+							],
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "json"
+							},
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										2285,
+										2286
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										0,
+										1
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										2285,
+										2286
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/curly_bracket.png",
+										"region.purplish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										0,
+										1
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"selected": 3,
+			"sheets":
+			[
 				{
-					"buffer": 4,
-					"file": "forms.py",
+					"buffer": 2,
+					"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/inodealarm_ha.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1200,
+						"buffer_size": 1215,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1200,
-								1200
+								125,
+								100
 							]
 						],
 						"settings":
 						{
+							"SL.279.region_keys":
+							[
+							],
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "python"
+							},
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
 							"syntax": "Packages/Python/Python.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 138.0,
+						"translation.y": 73.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "templates/forms/teams.html",
+					"buffer": 3,
+					"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/ipbx.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1388,
+						"buffer_size": 1222,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								342,
-								342
+								1099,
+								1099
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 2,
+							"SL.280.region_keys":
+							[
+							],
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "python"
+							},
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										967,
+										968
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										950,
+										951
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1101,
+										1102
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1099,
+										1100
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 58.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/iswitch.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1264,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1130,
+								1130
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "python"
+							},
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										1132,
+										1133
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										1130,
+										1131
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 88.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/common.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1887,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								595,
+								595
+							]
+						],
+						"settings":
+						{
+							"SL.285.region_keys":
+							[
+							],
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "python"
+							},
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+									"1":
+									[
+										595,
+										596
+									]
+								},
+								"icon":
+								{
+									"1":
+									[
+										"Packages/BracketHighlighter/icons/round_bracket.png",
+										"region.yellowish"
+									]
+								},
+								"open":
+								{
+									"1":
+									[
+										579,
+										580
+									]
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -449,51 +1549,365 @@
 				},
 				{
 					"buffer": 6,
-					"file": "templates/pages/demo.html",
+					"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/icare.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 314,
+						"buffer_size": 876,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								222,
-								222
+								98,
+								98
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "python"
+							},
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 7,
-					"file": "app.py",
+					"file": "/Users/kentasato718/Projects/Tools/Deploy/fabfile/ilogger_ratings.py",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 166,
+						"buffer_size": 1108,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								40,
-								40
+								249,
+								166
 							]
 						],
 						"settings":
 						{
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "python"
+							},
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.clone": -1,
+							"bracket_highlighter.clone_locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.clone_regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
+							"bracket_highlighter.locations":
+							{
+								"close":
+								{
+								},
+								"icon":
+								{
+								},
+								"open":
+								{
+								},
+								"unmatched":
+								{
+								}
+							},
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content"
+							],
 							"syntax": "Packages/Python/Python.sublime-syntax",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
@@ -502,101 +1916,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "models.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1538,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1480,
-								1001
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
-				{
-					"buffer": 9,
-					"file": "views.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5005,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								414,
-								414
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/SQL/SQL.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "/Users/kentasato718/Projects/LeetCode/toeplitz-matrix.py",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 155,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								155,
-								155
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -608,7 +1928,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 34.0
 	},
 	"layout":
 	{
@@ -630,7 +1950,7 @@
 		"cols":
 		[
 			0.0,
-			0.45212951187,
+			0.492241255734,
 			1.0
 		],
 		"rows":
@@ -640,9 +1960,13 @@
 		]
 	},
 	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
 	"output.exec":
 	{
-		"height": 195.0
+		"height": 28.0
 	},
 	"output.find_results":
 	{
@@ -690,7 +2014,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 238.0,
+	"side_bar_width": 270.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

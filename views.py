@@ -36,7 +36,7 @@ def login_required(test):
         if 'logged_in' in session:
             return test(*args, **kwargs)
         else:
-            flash('ログインしてください！')
+            flash("Login Required")
             return redirect(url_for('login'))
     return wrap
 
@@ -63,13 +63,13 @@ def login():
         user = User.query.filter_by(name=request.form['name']).first()
         if user is not None and user.password == request.form['password']:
             session['logged_in'] = True
-            flash('ようこそ！')
+            flash('Welcome！')
             return redirect(url_for('demo'))
         else:
-            error = 'ユーザー名かパスワードが正しくありません'
+            error = 'User name or password is invalid'
             flash(error)
     else:
-        error = '両方とも入力してください'
+        error = 'Both fields must be entered'
         flash(error)
     return render_template('forms/login.html', form=form, error=error)
 
@@ -87,10 +87,10 @@ def register():
                 )
             db.session.add(new_user)
             db.session.commit()
-            flash('ユーザー登録ありがとうございます！ログインしてください！')
+            flash('Thanks for registration! Please login!')
             return redirect(url_for('login'))
         else:
-            flash('入力内容が間違っています')
+            flash('The value is incorrect')
     return render_template('forms/register.html', form=form, error=error)
 
 
@@ -107,7 +107,7 @@ def demo():
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
-    flash('ログアウトしました！')
+    flash('Logged out！')
     return redirect(url_for('login'))
 
 # Error handlers.
@@ -149,6 +149,7 @@ def add_team():
     error = None
     form = AddTeamForm(request.form)
     if request.method == 'POST' :
+        flash('Request is POST')
         if form.validate_on_submit():
             new_team = Team(
                 form.team_name.data,
@@ -157,8 +158,11 @@ def add_team():
                 )
             db.session.add(new_team)
             db.session.commit()
-            flash('チームが登録されました！')
-            return redirect(url_for('teams'))
+            flash('Team is registered！')
+        else:
+            flash('Validate failed!')
+        return redirect(url_for('teams'))    
+
 
 @app.route('/delete/<int:team_id>')
 @login_required
@@ -166,7 +170,7 @@ def delete_team(team_id):
     new_id = team_id
     db.session.query(Team).filter_by(id=new_id).delete()
     db.session.commit()
-    flash('チームは削除されました.。Team is deleted successfully')
+    flash('Team is deleted successfully')
     return redirect(url_for('teams'))
 
 #----------------------------------------------------------------------------#
@@ -179,8 +183,8 @@ if __name__ == '__main__':
     app.run()
 '''
 # Or specify port manually:
-'''
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
-'''
+# -- '''
+# -- if __name__ == '__main__':
+# --     port = int(os.environ.get('PORT', 5000))
+# --     app.run(host='0.0.0.0', port=port)
+# -- '''
