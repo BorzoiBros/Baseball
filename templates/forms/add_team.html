@@ -7,7 +7,7 @@
 <p><a href="{{ url_for ('demo') }}" >Return to demo page</a></p>
   <form method="post" class="form">
   	{{ form.csrf_token }}
-    <h3 class="form-heading">Team Registration<a href="{{ url_for('add_team') }}"></h3>
+    <h3 class="form-heading">Team Registration</h3>
     {{ form.team_name(class_ = 'form-control first-input', placeholder = form.team_name.label.text, required = true, autofocus = true) }}
     {{ form.league(class_ = 'form-control', placeholder = form.league.label.text, required = true) }}
     {{ form.division(class_ = 'form-control', placeholder = form.division.label.text, required = true) }}

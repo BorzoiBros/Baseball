@@ -3,10 +3,11 @@
 #----------------------------------------------------------------------------#
 
 from flask import Flask, render_template, request, flash, url_for, session, redirect
-from flask.ext.sqlalchemy import SQLAlchemy
+# from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
-from forms import *
+from forms import RegisterForm, LoginForm, ForgotForm, AddTeamForm
 import os
 from functools import wraps
 
@@ -133,23 +134,11 @@ if not app.debug:
     app.logger.addHandler(file_handler)
     app.logger.info('errors')
 
-@app.route('/teams', methods=['GET', 'POST'])
-@login_required
-def teams():
-    teams = db.session.query(Team)
-    return render_template(
-        'forms/teams.html',
-        form=AddTeamForm(request.form),
-        teams=teams
-        )
-
-@app.route('/add_team', methods=['GET', 'POST'])
-@login_required
+@app.route('/add_teams', methods=['GET', 'POST'])
 def add_team():
     error = None
     form = AddTeamForm(request.form)
     if request.method == 'POST' :
-        flash('Request is POST')
         if form.validate_on_submit():
             new_team = Team(
                 form.team_name.data,
@@ -158,11 +147,17 @@ def add_team():
                 )
             db.session.add(new_team)
             db.session.commit()
-            flash('Team is registered！')
+            flash('Thanks for adding team!')
+            teams = db.session.query(Team)
+            return render_template(
+                'forms/add_team.html',
+                form=AddTeamForm(request.form),
+                teams=teams
+                )
+            # return redirect(url_for('teams'))
         else:
-            flash('Validate failed!')
-        return redirect(url_for('teams'))    
-
+            flash('The value is incorrect')
+    return render_template('forms/add_team.html', form=form, error=error)
 
 @app.route('/delete/<int:team_id>')
 @login_required
@@ -171,7 +166,7 @@ def delete_team(team_id):
     db.session.query(Team).filter_by(id=new_id).delete()
     db.session.commit()
     flash('Team is deleted successfully')
-    return redirect(url_for('teams'))
+    return redirect(url_for('add_team'))
 
 #----------------------------------------------------------------------------#
 # Launch.
