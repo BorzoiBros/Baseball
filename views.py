@@ -136,6 +136,7 @@ if not app.debug:
 
 @app.route('/add_teams', methods=['GET', 'POST'])
 def add_team():
+    teams = db.session.query(Team)
     error = None
     form = AddTeamForm(request.form)
     if request.method == 'POST' :
@@ -148,7 +149,6 @@ def add_team():
             db.session.add(new_team)
             db.session.commit()
             flash('Thanks for adding team!')
-            teams = db.session.query(Team)
             return render_template(
                 'forms/add_team.html',
                 form=AddTeamForm(request.form),
@@ -157,7 +157,7 @@ def add_team():
             # return redirect(url_for('teams'))
         else:
             flash('The value is incorrect')
-    return render_template('forms/add_team.html', form=form, error=error)
+    return render_template('forms/add_team.html', form=form, teams=teams, error=error)
 
 @app.route('/delete/<int:team_id>')
 @login_required
